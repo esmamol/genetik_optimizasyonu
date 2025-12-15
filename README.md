@@ -100,25 +100,8 @@ Bu proje **Google Colab** ortamında çalıştırılmak üzere tasarlanmıştır
   veya GitHub deposu üzerinden doğrudan açın.
 
 ### 2. Hücreleri Sırayla Çalıştırın
-Notebook aşağıdaki mantıksal sıraya sahiptir:
-
-1. Proje tanımı ve amaç
-2. Gerekli kütüphanelerin yüklenmesi
-3. Amaç fonksiyonu ve kısıtların tanımlanması
-4. Başlangıç popülasyonu oluşturma
-5. Seçilim, çaprazlama ve mutasyon fonksiyonları
-6. Genetik Algoritma ana döngüsü
-7. En iyi çözümün elde edilmesi
-8. Fitness evrim grafiğinin çizdirilmesi
-9. Sonuçların yorumlanması
 
 ### 3. Sonuçları İnceleyin
-Algoritma çalıştırıldığında aşağıdaki çıktılar elde edilir:
-
-- Optimum genişlik (\(x_1\))
-- Optimum yükseklik (\(x_2\))
-- Amaç fonksiyonu (fitness) değeri
-- Fitness evrim grafiği
 
 ---
 
