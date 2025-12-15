@@ -2,22 +2,27 @@
 
 ## Genetik Algoritma ile Kargo Kutusu Optimizasyonu
 
-**Öğrenci:** Esma Mol  
+**Ad Soyad:** Esma Mol  
 **Okul Numarası:** 2312721016  
 **Senaryo:** 6 – Kargo Kutusu Tasarımı  
 **Ders:** BLG307 – Yapay Zeka Sistemleri  
 **Yöntem:** Genetik Algoritma (GA)
 
 ---
-# Genetik Algoritma ile Kargo Kutusu Optimizasyonu (Senaryo 6)
+
+## 📌 Proje Tanımı
 
 Bu proje, **BLG307 Yapay Zeka Sistemleri** dersi kapsamında verilen ödev için geliştirilmiştir.  
 Amaç, bir e-ticaret firması için en uygun kargo kutusu ölçülerini  
-(**genişlik x₁** ve **yükseklik x₂**) **Genetik Algoritma (GA)** kullanarak optimize etmektir.
+(**genişlik \(x_1\)** ve **yükseklik \(x_2\)**) **Genetik Algoritma (GA)** kullanarak optimize etmektir.
+
+Problem, sürekli değişkenli ve kısıtlı bir optimizasyon problemi olup,
+klasik yöntemlerle çözümü zor olduğundan sezgisel bir yaklaşım olan
+Genetik Algoritma tercih edilmiştir.
 
 ---
 
-## 📌 Projenin Amacı
+## 🎯 Projenin Amacı
 
 Optimizasyon problemi aşağıdaki amaç fonksiyonu ile tanımlanmıştır:
 
@@ -57,29 +62,32 @@ x_1 \cdot x_2 \le 600
 
 ## ⚙️ Kullanılan Yöntem: Genetik Algoritma (GA)
 
-Bu projede sürekli değişkenli ve kısıtlı bir optimizasyon problemi  
+Bu projede kısıtlı ve sürekli optimizasyon problemi,
 **Genetik Algoritma** kullanılarak çözülmüştür.
 
-Kullanılan GA bileşenleri aşağıda özetlenmiştir:
+Kullanılan temel GA bileşenleri aşağıda özetlenmiştir:
 
 - **Popülasyon Oluşturma:**  
-  \(x_1\) ve \(x_2\) değerleri tanımlı aralıklarda rastgele seçilerek başlangıç popülasyonu oluşturulmuştur.
+  \(x_1\) ve \(x_2\) değerleri tanımlı aralıklarda rastgele seçilerek
+  başlangıç popülasyonu oluşturulmuştur.
 
 - **Fitness Fonksiyonu:**  
-  Amaç fonksiyonu doğrudan fitness değeri olarak kullanılmış,  
-  kısıt ihlali durumunda ceza (penalty) yöntemi uygulanmıştır.
+  Amaç fonksiyonu doğrudan fitness değeri olarak kullanılmış,
+  kısıt ihlali durumunda **ceza (penalty) yöntemi** uygulanmıştır.
 
 - **Seçilim (Selection):**  
   **Rank-based selection** yöntemi kullanılmıştır.  
-  Bu yöntem, bireyleri mutlak fitness değerlerine göre değil,  
-  fitness sıralamalarına göre seçerek genetik çeşitliliği korumayı amaçlar.
+  Bu yöntemde bireyler mutlak fitness değerlerine göre değil,
+  fitness sıralamalarına göre seçilir.  
+  Böylece erken yakınsama (premature convergence) azaltılarak
+  genetik çeşitlilik korunmuştur.
 
 - **Çaprazlama (Crossover):**  
   Birey yapısı iki genli olduğu için **tek noktalı çaprazlama** uygulanmıştır.  
   Çaprazlama işlemi %80 olasılıkla gerçekleştirilmiştir.
 
 - **Mutasyon (Mutation):**  
-  Düşük olasılıkla genlerde küçük rastgele değişiklikler yapılmış,  
+  Düşük olasılıkla genlerde küçük rastgele değişiklikler yapılmış,
   böylece yerel optimumlara erken sıkışma önlenmiştir.
 
 - **Jenerasyon Döngüsü:**  
@@ -102,6 +110,34 @@ Bu proje **Google Colab** ortamında çalıştırılmak üzere tasarlanmıştır
 ### 2. Hücreleri Sırayla Çalıştırın
 
 ### 3. Sonuçları İnceleyin
+Algoritma çalıştırıldığında optimum çözüm değerleri ve
+fitness evrim grafiği elde edilir.
+
+---
+
+## 📊 Sonuçlar ve Analiz
+
+Genetik Algoritma çalıştırıldığında aşağıdaki optimum değerler elde edilmiştir:
+
+- Optimum genişlik (\(x_1\)) ≈ **29.93**
+- Optimum yükseklik (\(x_2\)) = **20**
+- Amaç fonksiyonu (fitness) değeri ≈ **469.01**
+
+### 🔍 Kısıt Kontrolü
+
+\[
+x_1 \cdot x_2 = 29.93 \times 20 = 598.6 \le 600
+\]
+
+Bu sonuç, elde edilen çözümün **raf hacmi kısıtını sağladığını**
+ve aynı zamanda \(x_1 \ge 15\) koşulunun da karşılandığını göstermektedir.
+
+### 📈 Yorum
+
+Fitness evrim grafiği incelendiğinde, algoritmanın jenerasyonlar boyunca
+daha iyi çözümlere yakınsadığı görülmektedir.  
+Bu durum, kullanılan **rank-based selection** yönteminin ve
+genetik algoritma parametrelerinin problemi çözmede etkili olduğunu göstermektedir.
 
 ---
 
