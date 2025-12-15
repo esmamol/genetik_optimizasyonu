@@ -1,104 +1,135 @@
+# BLG-307 Yapay Zeka Sistemleri – 1. Proje Ödevi
+
+## Genetik Algoritma ile Kargo Kutusu Optimizasyonu
+
+**Öğrenci:** Esma Mol  
+**Okul Numarası:** 2312721016  
+**Senaryo:** 6 – Kargo Kutusu Tasarımı  
+**Ders:** BLG307 – Yapay Zeka Sistemleri  
+**Yöntem:** Genetik Algoritma (GA)
+
+---
 # Genetik Algoritma ile Kargo Kutusu Optimizasyonu (Senaryo 6)
 
-Bu proje, BLG307 Yapay Zeka Sistemleri dersi kapsamında verilen ödev için geliştirilmiştir. 
-Amaç, bir e-ticaret firması için en uygun kargo kutusu ölçülerini (genişlik x₁ ve yükseklik x₂) 
-Genetik Algoritma (GA) kullanarak optimize etmektir.
+Bu proje, **BLG307 Yapay Zeka Sistemleri** dersi kapsamında verilen ödev için geliştirilmiştir.  
+Amaç, bir e-ticaret firması için en uygun kargo kutusu ölçülerini  
+(**genişlik x₁** ve **yükseklik x₂**) **Genetik Algoritma (GA)** kullanarak optimize etmektir.
 
 ---
 
 ## 📌 Projenin Amacı
 
-Optimizasyon yapılacak amaç fonksiyonu:
+Optimizasyon problemi aşağıdaki amaç fonksiyonu ile tanımlanmıştır:
 
 \[
 y = x_1 \cdot x_2 - 0.1x_1^2 - 0.1x_2^2
 \]
 
-Bu fonksiyon kutunun **hacmini artırırken**, çok büyük kutuların **maliyetini cezalandırır**.  
-Amaç, kısıtlar altında **maksimum** değeri veren x₁ ve x₂'yi bulmaktır.
+Bu fonksiyon:
+- \(x_1 \cdot x_2\) terimi ile **kutunun hacmini artırmayı**,  
+- \(-0.1x_1^2\) ve \(-0.1x_2^2\) terimleri ile **aşırı büyük boyutların maliyetini cezalandırmayı** amaçlamaktadır.
 
-### Kısıtlar:
-- Minimum genişlik:  
-  \[
-  x_1 \ge 15
-  \]
-- Raf hacmi sınırı:  
-  \[
-  x_1 \cdot x_2 \le 600
-  \]
+Temel hedef, aşağıdaki kısıtlar altında amaç fonksiyonunu **maksimize eden**
+\(x_1\) ve \(x_2\) değerlerini bulmaktır.
 
-### Değişken Aralıkları:
-- x₁ ∈ [15, 40]  
-- x₂ ∈ [5, 20]
+---
 
-Proje, bu optimizasyon problemini çözmek için **Genetik Algoritma** kullanır.
+## 🔒 Kısıtlar
+
+- **Minimum genişlik kısıtı:**
+\[
+x_1 \ge 15
+\]
+
+- **Raf hacmi kısıtı:**
+\[
+x_1 \cdot x_2 \le 600
+\]
+
+---
+
+## 📐 Değişken Aralıkları
+
+- \(x_1 \in [15, 40]\)  
+- \(x_2 \in [5, 20]\)
 
 ---
 
 ## ⚙️ Kullanılan Yöntem: Genetik Algoritma (GA)
 
-Projede kullanılan Genetik Algoritma bileşenleri:
+Bu projede sürekli değişkenli ve kısıtlı bir optimizasyon problemi  
+**Genetik Algoritma** kullanılarak çözülmüştür.
+
+Kullanılan GA bileşenleri aşağıda özetlenmiştir:
 
 - **Popülasyon Oluşturma:**  
-  Rastgele x₁ ve x₂ değerlerinden başlangıç popülasyonu üretilir.
+  \(x_1\) ve \(x_2\) değerleri tanımlı aralıklarda rastgele seçilerek başlangıç popülasyonu oluşturulmuştur.
 
 - **Fitness Fonksiyonu:**  
-  Amaç fonksiyonu + kısıt kontrolü.
+  Amaç fonksiyonu doğrudan fitness değeri olarak kullanılmış,  
+  kısıt ihlali durumunda ceza (penalty) yöntemi uygulanmıştır.
 
 - **Seçilim (Selection):**  
-  Turnuva seçimi (tournament selection).
+  **Rank-based selection** yöntemi kullanılmıştır.  
+  Bu yöntem, bireyleri mutlak fitness değerlerine göre değil,  
+  fitness sıralamalarına göre seçerek genetik çeşitliliği korumayı amaçlar.
 
 - **Çaprazlama (Crossover):**  
-  %80 olasılıkla uygulanır; x₁ ve x₂ ebeveynlerden alınarak yeni birey oluşturulur.
+  Birey yapısı iki genli olduğu için **tek noktalı çaprazlama** uygulanmıştır.  
+  Çaprazlama işlemi %80 olasılıkla gerçekleştirilmiştir.
 
 - **Mutasyon (Mutation):**  
-  Değerler küçük rastgele değişimlerle güncellenir.
+  Düşük olasılıkla genlerde küçük rastgele değişiklikler yapılmış,  
+  böylece yerel optimumlara erken sıkışma önlenmiştir.
 
 - **Jenerasyon Döngüsü:**  
-  150 jenerasyon boyunca çalıştırılarak en iyi birey takip edilir.
+  Algoritma **150 jenerasyon** boyunca çalıştırılmış ve her jenerasyonda
+  elde edilen en iyi birey takip edilmiştir.
 
 - **Görselleştirme:**  
-  Fitness değerinin gelişimi grafikle gösterilir.
+  En iyi fitness değerlerinin jenerasyonlara göre değişimi grafikle gösterilmiştir.
 
 ---
 
 ## ▶️ Çalıştırma Adımları
 
-Aşağıdaki adımlar Google Colab üzerinde çalışmak içindir.
+Bu proje **Google Colab** ortamında çalıştırılmak üzere tasarlanmıştır.
 
-### **1. Colab’de .ipynb dosyasını açın**
-- Dosyayı yükleyin veya GitHub üzerinden açın.
+### 1. Notebook Dosyasını Açın
+- `.ipynb` dosyasını Google Colab’e yükleyin  
+  veya GitHub deposu üzerinden doğrudan açın.
 
-### **2. Tüm hücreleri sırayla çalıştırın**
-- Hücreler şu sırayı içerir:
-  1. Projenin açıklaması ve amaç
-  2. Kütüphanelerin import edilmesi
-  3. Amaç fonksiyonu ve kısıtların tanımlanması
-  4. Popülasyon oluşturma
-  5. Seçilim, çaprazlama, mutasyon fonksiyonları
-  6. Genetik Algoritma döngüsü
-  7. En iyi çözüm çıktısı
-  8. Fitness grafiği
-  9. Sonuç yorumları
+### 2. Hücreleri Sırayla Çalıştırın
+Notebook aşağıdaki mantıksal sıraya sahiptir:
 
-### **3. Sonuçları inceleyin**
-Algoritma çalıştığında şu bilgiler Colab çıktısında görünecektir:
+1. Proje tanımı ve amaç
+2. Gerekli kütüphanelerin yüklenmesi
+3. Amaç fonksiyonu ve kısıtların tanımlanması
+4. Başlangıç popülasyonu oluşturma
+5. Seçilim, çaprazlama ve mutasyon fonksiyonları
+6. Genetik Algoritma ana döngüsü
+7. En iyi çözümün elde edilmesi
+8. Fitness evrim grafiğinin çizdirilmesi
+9. Sonuçların yorumlanması
 
-- Optimum genişlik (x₁)
-- Optimum yükseklik (x₂)
-- Amaç fonksiyonu değeri
+### 3. Sonuçları İnceleyin
+Algoritma çalıştırıldığında aşağıdaki çıktılar elde edilir:
+
+- Optimum genişlik (\(x_1\))
+- Optimum yükseklik (\(x_2\))
+- Amaç fonksiyonu (fitness) değeri
 - Fitness evrim grafiği
 
 ---
 
 ## 🛠️ Kurulum Yönergeleri
 
-Bu proje Google Colab üzerinde çalışmak üzere tasarlanmıştır.  
-Herhangi bir ek kurulum gerektirmez.
+Bu proje Google Colab üzerinde çalışmak üzere tasarlanmıştır  
+ve **ek bir kurulum gerektirmez**.
 
-Eğer projeyi kendi bilgisayarınızda çalıştırmak isterseniz:
+Projeyi yerel bir bilgisayarda çalıştırmak isteyen kullanıcılar için
+gerekli kütüphaneler aşağıda verilmiştir:
 
-### Gereken Kütüphaneler:
 ```bash
 pip install numpy
 pip install matplotlib
