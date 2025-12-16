@@ -14,7 +14,7 @@
 
 Bu proje, **BLG307 Yapay Zeka Sistemleri** dersi kapsamında verilen ödev için geliştirilmiştir.  
 Amaç, bir e-ticaret firması için en uygun kargo kutusu ölçülerini  
-(**genişlik \(x_1\)** ve **yükseklik \(x_2\)**) **Genetik Algoritma (GA)** kullanarak optimize etmektir.
+(**genişlik (x1)** ve **yükseklik (x2)**) **Genetik Algoritma (GA)** kullanarak optimize etmektir.
 
 Problem, sürekli değişkenli ve kısıtlı bir optimizasyon problemi olup,
 klasik yöntemlerle çözümü zor olduğundan sezgisel bir yaklaşım olan
@@ -26,37 +26,31 @@ Genetik Algoritma tercih edilmiştir.
 
 Optimizasyon problemi aşağıdaki amaç fonksiyonu ile tanımlanmıştır:
 
-\[
-y = x_1 \cdot x_2 - 0.1x_1^2 - 0.1x_2^2
-\]
+y = x1 * x2 - 0.1 * x1^2 - 0.1 * x2^2
 
 Bu fonksiyon:
-- \(x_1 \cdot x_2\) terimi ile **kutunun hacmini artırmayı**,  
-- \(-0.1x_1^2\) ve \(-0.1x_2^2\) terimleri ile **aşırı büyük boyutların maliyetini cezalandırmayı** amaçlamaktadır.
+- "x1 * x2" terimi ile **kutunun hacmini artırmayı**,  
+- "- 0.1 * x1^2 - 0.1 * x2^2" terimleri ile **aşırı büyük boyutların maliyetini cezalandırmayı** amaçlamaktadır.
 
 Temel hedef, aşağıdaki kısıtlar altında amaç fonksiyonunu **maksimize eden**
-\(x_1\) ve \(x_2\) değerlerini bulmaktır.
+x1 ve x2 değerlerini bulmaktır.
 
 ---
 
 ## 🔒 Kısıtlar
 
 - **Minimum genişlik kısıtı:**
-\[
-x_1 \ge 15
-\]
+x1 >= 15
 
 - **Raf hacmi kısıtı:**
-\[
-x_1 \cdot x_2 \le 600
-\]
+x1 * x2 <= 600
 
 ---
 
 ## 📐 Değişken Aralıkları
 
-- \(x_1 \in [15, 40]\)  
-- \(x_2 \in [5, 20]\)
+- **Genişlik (x1):** 15 – 40  
+- **Yükseklik (x2):** 5 – 20  
 
 ---
 
@@ -68,7 +62,7 @@ Bu projede kısıtlı ve sürekli optimizasyon problemi,
 Kullanılan temel GA bileşenleri aşağıda özetlenmiştir:
 
 - **Popülasyon Oluşturma:**  
-  \(x_1\) ve \(x_2\) değerleri tanımlı aralıklarda rastgele seçilerek
+  x1 ve x2 değerleri tanımlı aralıklarda rastgele seçilerek
   başlangıç popülasyonu oluşturulmuştur.
 
 - **Fitness Fonksiyonu:**  
@@ -119,18 +113,18 @@ fitness evrim grafiği elde edilir.
 
 Genetik Algoritma çalıştırıldığında aşağıdaki optimum değerler elde edilmiştir:
 
-- Optimum genişlik (\(x_1\)) ≈ **29.93**
-- Optimum yükseklik (\(x_2\)) = **20**
+- Optimum genişlik (x1) ≈ **29.93**
+- Optimum yükseklik (x2) = **20**
 - Amaç fonksiyonu (fitness) değeri ≈ **469.01**
 
 ### 🔍 Kısıt Kontrolü
 
 \[
-x_1 \cdot x_2 = 29.93 \times 20 = 598.6 \le 600
+x1*x2 = 29.93 \times 20 = 598.6 <= 600
 \]
 
 Bu sonuç, elde edilen çözümün **raf hacmi kısıtını sağladığını**
-ve aynı zamanda \(x_1 \ge 15\) koşulunun da karşılandığını göstermektedir.
+ve aynı zamanda x1>=15 koşulunun da karşılandığını göstermektedir.
 
 ### 📈 Yorum
 
